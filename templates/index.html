@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ data.name }} — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo"><span class="accent">&lt;</span>BKR<span class="accent">/&gt;</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#more">More</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="about" class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-eyebrow"><span class="accent">// hello world</span></p>
+        <h1 class="hero-name">{{ data.name }}</h1>
+        <h2 class="hero-tagline">{{ data.tagline }}</h2>
+        <p class="hero-bio">{{ data.bio }}</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="/download-cv" class="btn-cv">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download CV
+          </a>
+          <a href="#contact" class="btn-ghost">Get in Touch</a>
+        </div>
+        <div class="hero-socials">
+          <a href="{{ data.github }}" target="_blank" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="{{ data.linkedin }}" target="_blank" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:{{ data.email }}" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="avatar-ring">
+          <div class="avatar-placeholder">
+            <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="18" fill="#7c3aed" opacity="0.5"/><ellipse cx="40" cy="70" rx="28" ry="16" fill="#7c3aed" opacity="0.3"/></svg>
+          </div>
+        </div>
+        <div class="hero-stat-chips">
+          <div class="chip"><span class="chip-num">2+</span><span class="chip-label">Years Experience</span></div>
+          <div class="chip"><span class="chip-num">1.5</span><span class="chip-label">VPD (German Scale)</span></div>
+          <div class="chip"><span class="chip-num">3.67</span><span class="chip-label">CGPA / 4.00</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator"><span>scroll</span><div class="scroll-line"></div></div>
+  </section>
+
+  <!-- FOCUS CARDS -->
+  <section class="section focus-section">
+    <div class="container">
+      <div class="focus-grid">
+        {% for card in data.focus_cards %}
+        <div class="focus-card">
+          <div class="focus-icon">{{ card.icon }}</div>
+          <h3 class="focus-title">{{ card.title }}</h3>
+          <p class="focus-desc">{{ card.desc }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">02 / skills</span>
+        <h2 class="section-title">Technical Arsenal</h2>
+        <p class="section-sub">A focused stack of tools and technologies I use to turn data into decisions.</p>
+      </div>
+      {% for category, items in data.skills.items() %}
+      <div class="skill-category-block">
+        <h3 class="skill-cat-label"><span class="skill-cat-line"></span>{{ category }}<span class="skill-cat-line"></span></h3>
+        <div class="skill-icon-grid">
+          {% for skill in items %}
+          <div class="skill-icon-card">
+            <div class="skill-icon-wrap">
+              <img src="{{ skill.icon }}" alt="{{ skill.name }}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+              <div class="skill-icon-fallback" style="display:none">{{ skill.name[:2].upper() }}</div>
+              <div class="skill-level-ring">
+                <svg viewBox="0 0 36 36">
+                  <circle class="ring-bg" cx="18" cy="18" r="15.9"/>
+                  <circle class="ring-fill" cx="18" cy="18" r="15.9" stroke-dasharray="{{ skill.level }}, 100" stroke-dashoffset="25"/>
+                </svg>
+              </div>
+            </div>
+            <span class="skill-icon-name">{{ skill.name }}</span>
+            <span class="skill-icon-pct">{{ skill.level }}%</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">03 / projects</span>
+        <h2 class="section-title">Built Things</h2>
+      </div>
+      {% if data.projects %}
+      <div class="projects-grid">
+        {% for p in data.projects %}
+        <div class="project-card">
+          <div class="project-top">
+            <span class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/></svg></span>
+            <div class="project-links">
+              {% if p.github %}<a href="{{ p.github }}" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>{% endif %}
+            </div>
+          </div>
+          <h3 class="project-name">{{ p.name }}</h3>
+          <p class="project-desc">{{ p.description }}</p>
+          <div class="project-tech">{% for t in p.tech %}<span class="tech-tag">{{ t }}</span>{% endfor %}</div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">Projects coming soon.</div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">04 / experience</span>
+        <h2 class="section-title">Work Experience</h2>
+      </div>
+      <div class="timeline">
+        {% for job in data.experience %}
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span class="timeline-period">{{ job.period }}</span></div>
+            <h3 class="timeline-role">{{ job.role }}</h3>
+            <h4 class="timeline-company">{{ job.company }}</h4>
+            <ul class="timeline-points">{% for point in job.points %}<li>{{ point }}</li>{% endfor %}</ul>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">05 / education</span>
+        <h2 class="section-title">Education</h2>
+      </div>
+      <div class="timeline">
+        {% for edu in data.education %}
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span class="timeline-period">{{ edu.period }}</span></div>
+            <h3 class="timeline-role">{{ edu.degree }}</h3>
+            <h4 class="timeline-company">{{ edu.institution }}</h4>
+            <p class="timeline-detail">{{ edu.details }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">06 / certifications</span>
+        <h2 class="section-title">Certifications</h2>
+      </div>
+      {% if data.certifications %}
+      <div class="cert-grid">
+        {% for cert in data.certifications %}
+        <div class="cert-card">
+          <span class="cert-icon">🏅</span>
+          <div class="cert-info">
+            <h3 class="cert-name">{{ cert.name }}</h3>
+            <p class="cert-meta">{{ cert.issuer }} &middot; {{ cert.year }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">Certifications coming soon.</div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- MORE -->
+  <section id="more" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">07 / more</span>
+        <h2 class="section-title">More Coming Soon</h2>
+      </div>
+      <div class="more-grid">
+        {% for label, icon in [("Research","🔬"),("Publications","📄"),("Problem Solving","🧠"),("Blog","✍️")] %}
+        <div class="more-card">
+          <span class="more-icon">{{ icon }}</span>
+          <h3>{{ label }}</h3>
+          <p class="more-placeholder">Content being updated soon.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt">
+    <div class="container contact-inner">
+      <div class="section-header">
+        <span class="section-tag">08 / contact</span>
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="contact-sub">Whether it's a collaboration, a question, or just a hello — my inbox is open.</p>
+      </div>
+      <div class="contact-cards">
+        <a href="mailto:{{ data.email }}" class="contact-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span>{{ data.email }}</span>
+        </a>
+        <a href="{{ data.github }}" target="_blank" class="contact-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>github.com/BijonR</span>
+        </a>
+        <a href="{{ data.linkedin }}" target="_blank" class="contact-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <span>linkedin.com/in/bijonkantiroy</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Built with <span class="accent">Python</span> + <span class="accent">Flask</span> &middot; {{ data.name }} &copy; 2025</p>
+  </footer>
+
+  <!-- CHATBOX -->
+  <div id="chat-bubble" onclick="toggleChat()" title="Let's Talk">
+    <div class="bubble-glow"></div>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.7a.75.75 0 0 0 .754.754l3.532-.892A9.955 9.955 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm-1 13H8a.75.75 0 0 1 0-1.5h3a.75.75 0 0 1 0 1.5zm4-4H8a.75.75 0 0 1 0-1.5h7a.75.75 0 0 1 0 1.5zm0-4H8a.75.75 0 0 1 0-1.5h7a.75.75 0 0 1 0 1.5z"/></svg>
+    <span class="chat-bubble-label">Let's Talk</span>
+    <div class="chat-bubble-dot"></div>
+  </div>
+
+  <div id="chat-window" class="chat-hidden">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">
+          <span>BK</span>
+          <div class="avatar-ring-pulse"></div>
+        </div>
+        <div>
+          <div class="chat-header-name">Bijon Kanti Roy</div>
+          <div class="chat-header-status"><span class="status-dot"></span> Available for opportunities</div>
+        </div>
+      </div>
+      <button onclick="toggleChat()" class="chat-close">&times;</button>
+    </div>
+
+    <!-- INTRO -->
+    <div id="chat-intro" class="chat-intro">
+      <div class="chat-intro-icon">
+        <svg viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" stroke="#ff2d9b" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+          <circle cx="24" cy="24" r="14" fill="rgba(255,45,155,0.08)" stroke="#00f5ff" stroke-width="1"/>
+          <text x="24" y="29" text-anchor="middle" font-size="16" fill="#fff">👋</text>
+        </svg>
+      </div>
+      <h3>Hey there!</h3>
+      <p>Got an opportunity, question, or just want to connect? Drop me a message and I'll reply within 24 hours.</p>
+      <div class="intro-tags">
+        <span>💼 Open to work</span>
+        <span>🎓 MSc applicant</span>
+        <span>🤝 Collaboration</span>
+      </div>
+      <button onclick="showForm()" class="btn-start-chat">
+        <span>Start a Conversation</span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+      </button>
+    </div>
+
+    <!-- FORM -->
+    <div id="chat-form" style="display:none; padding:1.25rem 1.25rem 1rem; flex-direction:column; gap:0.65rem;">
+      <p class="form-heading">// send_message.py</p>
+      <div class="form-group">
+        <label class="form-label"><span class="label-accent">01</span> Your Name</label>
+        <input type="text" id="msg-name" class="form-input" placeholder="e.g. Anna Schmidt"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="label-accent">02</span> Your Email</label>
+        <input type="email" id="msg-email" class="form-input" placeholder="your@email.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="label-accent">03</span> Subject</label>
+        <input type="text" id="msg-subject" class="form-input" placeholder="e.g. Job Opportunity / Collaboration"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="label-accent">04</span> Message</label>
+        <textarea id="msg-body" class="form-input form-textarea" placeholder="Hi Bijon, I'd like to..."></textarea>
+      </div>
+      <button onclick="submitForm()" class="chat-send-full-btn" id="send-btn">
+        <span>Send Message</span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+      <p class="form-note">🔒 Your info is only used to reply to you.</p>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="chat-success" style="display:none;" class="chat-intro chat-success-view">
+      <div class="success-animation">
+        <svg viewBox="0 0 60 60" fill="none">
+          <circle cx="30" cy="30" r="28" stroke="#00f5ff" stroke-width="1.5"/>
+          <path d="M18 30l9 9 15-18" stroke="#00f5ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Message Sent! 🎉</h3>
+      <p>Thanks for reaching out! I'll reply to your email within 24–48 hours.</p>
+      <button onclick="resetForm()" class="btn-start-chat btn-outline">Send Another</button>
+    </div>
+
+    <!-- ERROR -->
+    <div id="chat-error" style="display:none;" class="chat-intro">
+      <div class="chat-intro-icon">⚠️</div>
+      <h3>Something went wrong</h3>
+      <p>Please try again or email me directly at <a href="mailto:bijonroy720@gmail.com" class="error-link">bijonroy720@gmail.com</a></p>
+      <button onclick="showForm()" class="btn-start-chat">Try Again</button>
+    </div>
+  </div>
+
+    <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init("CUoZ_AcEKfH4NSZFK");</script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
