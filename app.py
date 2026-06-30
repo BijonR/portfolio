@@ -166,8 +166,15 @@ Answer questions about Bijon briefly and professionally. If asked something unre
 
 @app.route("/visit", methods=["POST"])
 def track_visit():
-    """Called once per page load — increments and returns the visitor count."""
+    """Called once per page load — only counts once per visitor per day using a cookie."""
+    from flask import make_response
+    from datetime import datetime, timedelta
+
+    today_str = datetime.utcnow().strftime("%Y-%m-%d")
+    already_visited = request.cookies.get("visited_date") == today_str
+
     try:
+        # Always fetch current count first
         get_resp = requests.get(
             f"{SUPABASE_URL}/visitor_stats?id=eq.1&select=total_visits",
             headers=SUPABASE_HEADERS,
@@ -175,32 +182,25 @@ def track_visit():
         )
         rows = get_resp.json()
         current = rows[0]["total_visits"] if rows else 0
-        new_count = current + 1
 
-        requests.patch(
-            f"{SUPABASE_URL}/visitor_stats?id=eq.1",
-            headers=SUPABASE_HEADERS,
-            json={"total_visits": new_count},
-            timeout=5
-        )
-        return jsonify({"total_visits": new_count})
-    except Exception as e:
-        print("Visitor counter error:", e)
-        return jsonify({"total_visits": None})
+        if not already_visited:
+            new_count = current + 1
+            requests.patch(
+                f"{SUPABASE_URL}/visitor_stats?id=eq.1",
+                headers=SUPABASE_HEADERS,
+                json={"total_visits": new_count},
+                timeout=5
+            )
+            current = new_count
 
+        resp = make_response(jsonify({"total_visits": current}))
 
-@app.route("/visit-count", methods=["GET"])
-def get_visit_count():
-    """Just reads the current count without incrementing."""
-    try:
-        resp = requests.get(
-            f"{SUPABASE_URL}/visitor_stats?id=eq.1&select=total_visits",
-            headers=SUPABASE_HEADERS,
-            timeout=5
-        )
-        rows = resp.json()
-        count = rows[0]["total_visits"] if rows else 0
-        return jsonify({"total_visits": count})
+        if not already_visited:
+            # Cookie expires at midnight UTC
+            tomorrow = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
+            resp.set_cookie("visited_date", today_str, expires=tomorrow)
+
+        return resp
     except Exception as e:
         print("Visitor counter error:", e)
         return jsonify({"total_visits": None})
