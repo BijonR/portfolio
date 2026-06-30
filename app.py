@@ -1,7 +1,19 @@
 from flask import Flask, render_template, send_from_directory, request, jsonify
 import os, urllib.request, json
+import requests
 
 app = Flask(__name__)
+
+# ===== SUPABASE — VISITOR COUNTER =====
+SUPABASE_URL = "https://wdrfsxatfbwlhoxlkdtx.supabase.co/rest/v1"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkcmZzeGF0ZmJ3bGhveGxrZHR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4MTAyNzcsImV4cCI6MjA5ODM4NjI3N30.10ams_FSawEHPQegYODPtwACN3BBixzcA1-Q95ixltE"
+
+SUPABASE_HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
+}
 
 portfolio_data = {
     "name": "Bijon Kanti Roy",
@@ -133,6 +145,48 @@ Answer questions about Bijon briefly and professionally. If asked something unre
     except Exception as e:
         reply = "Sorry, I'm having trouble connecting right now. Please try again later."
     return jsonify({"reply": reply})
+
+
+@app.route("/visit", methods=["POST"])
+def track_visit():
+    """Called once per page load — increments and returns the visitor count."""
+    try:
+        get_resp = requests.get(
+            f"{SUPABASE_URL}/visitor_stats?id=eq.1&select=total_visits",
+            headers=SUPABASE_HEADERS,
+            timeout=5
+        )
+        rows = get_resp.json()
+        current = rows[0]["total_visits"] if rows else 0
+        new_count = current + 1
+
+        requests.patch(
+            f"{SUPABASE_URL}/visitor_stats?id=eq.1",
+            headers=SUPABASE_HEADERS,
+            json={"total_visits": new_count},
+            timeout=5
+        )
+        return jsonify({"total_visits": new_count})
+    except Exception as e:
+        print("Visitor counter error:", e)
+        return jsonify({"total_visits": None})
+
+
+@app.route("/visit-count", methods=["GET"])
+def get_visit_count():
+    """Just reads the current count without incrementing."""
+    try:
+        resp = requests.get(
+            f"{SUPABASE_URL}/visitor_stats?id=eq.1&select=total_visits",
+            headers=SUPABASE_HEADERS,
+            timeout=5
+        )
+        rows = resp.json()
+        count = rows[0]["total_visits"] if rows else 0
+        return jsonify({"total_visits": count})
+    except Exception as e:
+        print("Visitor counter error:", e)
+        return jsonify({"total_visits": None})
 
 
 if __name__ == "__main__":

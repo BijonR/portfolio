@@ -122,3 +122,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el) el.addEventListener('input', () => el.classList.remove('input-error'));
   });
 });
+
+// ===== VISITOR COUNTER =====
+async function trackVisitor() {
+  const el = document.getElementById('visitor-count');
+  if (!el) return;
+  try {
+    const res = await fetch('/visit', { method: 'POST' });
+    const data = await res.json();
+    if (data.total_visits !== null && data.total_visits !== undefined) {
+      el.textContent = data.total_visits.toLocaleString();
+    } else {
+      el.textContent = '—';
+    }
+  } catch (err) {
+    console.error('Visitor counter error:', err);
+    el.textContent = '—';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', trackVisitor);

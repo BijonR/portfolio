@@ -443,7 +443,10 @@ body::after {
 .empty-state { text-align: center; padding: 3rem; color: var(--text-dim); border: 1px dashed var(--glass-border); border-radius: var(--radius); font-family: var(--mono); font-size: 0.88rem; }
 
 /* ===== FOOTER ===== */
-.footer { text-align: center; padding: 1.5rem; border-top: 1px solid var(--glass-border); font-size: 0.8rem; color: var(--text-dim); font-family: var(--mono); }
+.footer { text-align: center; padding: 1.5rem; border-top: 1px solid var(--glass-border); font-size: 0.8rem; color: var(--text-dim); font-family: var(--mono); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.visitor-counter { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: var(--text-dim); }
+.visitor-counter svg { width: 14px; height: 14px; color: var(--accent); }
+.visitor-counter #visitor-count { color: var(--accent-hi); font-weight: 600; }
 
 /* ===== FADE IN ===== */
 .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
