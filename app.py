@@ -16,9 +16,9 @@ portfolio_data = {
     # Icons from https://skillicons.dev (free, no API key needed)
     "skills": {
         "Data & Analytics": [
-            {"name": "SQL",         "level": 90, "icon": "https://skillicons.dev/icons?i=mysql"},
-            {"name": "Excel",       "level": 85, "icon": "https://img.icons8.com/color/96/microsoft-excel-2019--v1.png"},
-            {"name": "Power BI",    "level": 82, "icon": "https://img.icons8.com/color/96/power-bi.png"},
+            {"name": "SQL",         "level": 80, "icon": "https://skillicons.dev/icons?i=mysql"},
+            {"name": "Excel",       "level": 70, "icon": "https://img.icons8.com/color/96/microsoft-excel-2019--v1.png"},
+            {"name": "Power BI",    "level": 70, "icon": "https://img.icons8.com/color/96/power-bi.png"},
             {"name": "Tableau",     "level": 75, "icon": "https://img.icons8.com/color/96/tableau-software.png"},
         ],
         "Programming": [
@@ -61,6 +61,17 @@ portfolio_data = {
                 "Inventory optimization and demand forecasting using Python",
                 "Supply chain coordination and reporting for medical supplies",
             ],
+        },
+        {
+            "role": "Business Data Analyst - Part Time",
+            "company": "National Healthcare Services",
+            "period": "January 2023 – December 2023",
+            "points": [
+                "Operational data analysis and KPI dashboard development using Power BI and Tableau",
+                "Database design and management with MySQL for healthcare records",
+                "Inventory optimization and demand forecasting using Python",
+                "Supply chain coordination and reporting for medical supplies",
+            ],
         }
     ],
 
@@ -69,7 +80,13 @@ portfolio_data = {
             "degree": "B.Sc. in Computer Science & Engineering",
             "institution": "Daffodil International University",
             "period": "January 2019 – February 2023",
-            "details": "CGPA: 3.665 / 4.00  |  VPD: 1.5 (German Scale)",
+            "details": "CGPA: 3.65 / 4.00  |  VPD: 1.5 (German Scale)",
+        },
+        {
+            "degree": "M.Sc. in Data Science",
+            "institution": "Catholic University of Eichstaett-Ingolstadt",
+            "period": "Winter 2026/27",
+            "details": "In Progress",
         }
     ],
 
