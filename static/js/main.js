@@ -142,3 +142,42 @@ async function trackVisitor() {
 }
 
 document.addEventListener('DOMContentLoaded', trackVisitor);
+
+// ===== PROJECT FILTER TABS =====
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs  = document.querySelectorAll('.filter-tab');
+  const cards = document.querySelectorAll('.project-card');
+  const noProjects = document.getElementById('no-projects');
+
+  if (!tabs.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Update active tab
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const selected = tab.dataset.category;
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const matches = selected === 'All' || card.dataset.category === selected;
+        if (matches) {
+          card.classList.remove('hidden');
+          card.classList.add('show');
+          visibleCount++;
+          // Remove show class after animation
+          setTimeout(() => card.classList.remove('show'), 400);
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('show');
+        }
+      });
+
+      // Show/hide empty state
+      if (noProjects) {
+        noProjects.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    });
+  });
+});

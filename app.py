@@ -28,9 +28,9 @@ portfolio_data = {
     # Icons from https://skillicons.dev (free, no API key needed)
     "skills": {
         "Data & Analytics": [
-            {"name": "SQL",         "level": 80, "icon": "https://skillicons.dev/icons?i=mysql"},
-            {"name": "Excel",       "level": 70, "icon": "https://img.icons8.com/color/96/microsoft-excel-2019--v1.png"},
-            {"name": "Power BI",    "level": 70, "icon": "https://img.icons8.com/color/96/power-bi.png"},
+            {"name": "SQL",         "level": 90, "icon": "https://skillicons.dev/icons?i=mysql"},
+            {"name": "Excel",       "level": 85, "icon": "https://img.icons8.com/color/96/microsoft-excel-2019--v1.png"},
+            {"name": "Power BI",    "level": 82, "icon": "https://img.icons8.com/color/96/power-bi.png"},
             {"name": "Tableau",     "level": 75, "icon": "https://img.icons8.com/color/96/tableau-software.png"},
         ],
         "Programming": [
@@ -59,7 +59,49 @@ portfolio_data = {
             "tech": ["PHP", "MySQL", "Backend Development"],
             "github": "https://github.com/BijonR",
             "live": None,
+            "category": "Software Development",
         },
+        {
+            "name": "Healthcare KPI Dashboard",
+            "description": "Interactive KPI dashboard for National Healthcare Services tracking supply chain performance, inventory levels, and operational metrics using Power BI and Python.",
+            "tech": ["Power BI", "Python", "SQL", "Excel"],
+            "github": None,
+            "live": None,
+            "category": "Data Analysis & Visualization",
+        },
+        {
+            "name": "Medical Supply Demand Forecasting",
+            "description": "Demand forecasting model for medical supplies using Python. Reduced overstock and stockout incidents by predicting future inventory needs based on historical data.",
+            "tech": ["Python", "Pandas", "NumPy", "Scikit-learn"],
+            "github": None,
+            "live": None,
+            "category": "Machine Learning & AI",
+        },
+        {
+            "name": "Healthcare Supply Chain Analytics",
+            "description": "End-to-end supply chain data analysis for a healthcare provider. Identified bottlenecks, reduced costs, and improved delivery timelines through data-driven insights.",
+            "tech": ["SQL", "Python", "Tableau", "Excel"],
+            "github": None,
+            "live": None,
+            "category": "Healthcare & Domain Projects",
+        },
+        {
+            "name": "Student Score Statistical Analysis",
+            "description": "10-page statistical report analyzing student scores dataset using Welch t-tests, ANOVA, Tukey HSD, Cohen's d, and eta-squared. Produced for TU Dortmund application.",
+            "tech": ["Python", "Statistics", "ANOVA", "Research"],
+            "github": None,
+            "live": None,
+            "category": "Research & Academic",
+        },
+    ],
+
+    "project_categories": [
+        {"name": "All",                          "icon": "⚡"},
+        {"name": "Data Analysis & Visualization","icon": "📊"},
+        {"name": "Machine Learning & AI",        "icon": "🤖"},
+        {"name": "Software Development",         "icon": "💻"},
+        {"name": "Healthcare & Domain Projects", "icon": "🏥"},
+        {"name": "Research & Academic",          "icon": "🔬"},
     ],
 
     "experience": [
@@ -67,17 +109,6 @@ portfolio_data = {
             "role": "Data Analyst",
             "company": "National Healthcare Services",
             "period": "January 2024 – Present",
-            "points": [
-                "Operational data analysis and KPI dashboard development using Power BI and Tableau",
-                "Database design and management with MySQL for healthcare records",
-                "Inventory optimization and demand forecasting using Python",
-                "Supply chain coordination and reporting for medical supplies",
-            ],
-        },
-        {
-            "role": "Business Data Analyst - Part Time",
-            "company": "National Healthcare Services",
-            "period": "January 2023 – December 2023",
             "points": [
                 "Operational data analysis and KPI dashboard development using Power BI and Tableau",
                 "Database design and management with MySQL for healthcare records",
@@ -92,13 +123,7 @@ portfolio_data = {
             "degree": "B.Sc. in Computer Science & Engineering",
             "institution": "Daffodil International University",
             "period": "January 2019 – February 2023",
-            "details": "CGPA: 3.65 / 4.00  |  VPD: 1.5 (German Scale)",
-        },
-        {
-            "degree": "M.Sc. in Data Science",
-            "institution": "Catholic University of Eichstaett-Ingolstadt",
-            "period": "Winter 2026/27",
-            "details": "In Progress",
+            "details": "CGPA: 3.665 / 4.00  |  VPD: 1.5 (German Scale)",
         }
     ],
 
@@ -166,15 +191,8 @@ Answer questions about Bijon briefly and professionally. If asked something unre
 
 @app.route("/visit", methods=["POST"])
 def track_visit():
-    """Called once per page load — only counts once per visitor per day using a cookie."""
-    from flask import make_response
-    from datetime import datetime, timedelta
-
-    today_str = datetime.utcnow().strftime("%Y-%m-%d")
-    already_visited = request.cookies.get("visited_date") == today_str
-
+    """Called once per page load — increments and returns the visitor count."""
     try:
-        # Always fetch current count first
         get_resp = requests.get(
             f"{SUPABASE_URL}/visitor_stats?id=eq.1&select=total_visits",
             headers=SUPABASE_HEADERS,
@@ -182,25 +200,32 @@ def track_visit():
         )
         rows = get_resp.json()
         current = rows[0]["total_visits"] if rows else 0
+        new_count = current + 1
 
-        if not already_visited:
-            new_count = current + 1
-            requests.patch(
-                f"{SUPABASE_URL}/visitor_stats?id=eq.1",
-                headers=SUPABASE_HEADERS,
-                json={"total_visits": new_count},
-                timeout=5
-            )
-            current = new_count
+        requests.patch(
+            f"{SUPABASE_URL}/visitor_stats?id=eq.1",
+            headers=SUPABASE_HEADERS,
+            json={"total_visits": new_count},
+            timeout=5
+        )
+        return jsonify({"total_visits": new_count})
+    except Exception as e:
+        print("Visitor counter error:", e)
+        return jsonify({"total_visits": None})
 
-        resp = make_response(jsonify({"total_visits": current}))
 
-        if not already_visited:
-            # Cookie expires at midnight UTC
-            tomorrow = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
-            resp.set_cookie("visited_date", today_str, expires=tomorrow)
-
-        return resp
+@app.route("/visit-count", methods=["GET"])
+def get_visit_count():
+    """Just reads the current count without incrementing."""
+    try:
+        resp = requests.get(
+            f"{SUPABASE_URL}/visitor_stats?id=eq.1&select=total_visits",
+            headers=SUPABASE_HEADERS,
+            timeout=5
+        )
+        rows = resp.json()
+        count = rows[0]["total_visits"] if rows else 0
+        return jsonify({"total_visits": count})
     except Exception as e:
         print("Visitor counter error:", e)
         return jsonify({"total_visits": None})

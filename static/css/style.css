@@ -335,6 +335,66 @@ body::after {
 .skill-icon-card:hover .skill-icon-pct { opacity: 1; }
 
 /* ===== PROJECTS ===== */
+
+/* Filter tabs */
+.project-filter-tabs {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.filter-tab {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.8rem; font-weight: 500;
+  font-family: var(--sans);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.filter-tab:hover {
+  border-color: var(--glass-border-hi);
+  color: var(--text);
+  background: var(--glass-bg2);
+}
+.filter-tab.active {
+  background: var(--accent-mid);
+  border-color: var(--accent);
+  color: var(--accent-hi);
+  box-shadow: 0 0 16px rgba(56,189,248,0.2);
+}
+.filter-tab-icon { font-size: 0.9rem; }
+
+/* Category badge on card */
+.project-category-badge {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.7rem; font-weight: 500;
+  font-family: var(--mono);
+  color: var(--accent);
+  background: var(--glass-bg2);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  white-space: nowrap;
+}
+
+/* Hidden project cards */
+.project-card.hidden {
+  display: none;
+}
+
+/* Fade in animation for filtered cards */
+.project-card.show {
+  animation: card-appear 0.3s ease forwards;
+}
+@keyframes card-appear {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
 .project-card {
   background: var(--glass-bg);

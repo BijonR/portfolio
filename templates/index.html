@@ -32,7 +32,7 @@
     <div class="hero-bg-grid"></div>
     <div class="hero-content">
       <div class="hero-text">
-        <p class="hero-eyebrow"><span class="accent">Cogito, Ergo Sum</span></p>
+        <p class="hero-eyebrow"><span class="accent">// hello world</span></p>
         <h1 class="hero-name">{{ data.name }}</h1>
         <h2 class="hero-tagline">{{ data.tagline }}</h2>
         <p class="hero-bio">{{ data.bio }}</p>
@@ -68,11 +68,11 @@
         <div class="hero-stat-chips">
           <div class="chip"><span class="chip-num">2+</span><span class="chip-label">Years Experience</span></div>
           <div class="chip"><span class="chip-num">1.5</span><span class="chip-label">VPD (German Scale)</span></div>
-          <div class="chip"><span class="chip-num">3.65</span><span class="chip-label">CGPA / 4.00</span></div>
+          <div class="chip"><span class="chip-num">3.67</span><span class="chip-label">CGPA / 4.00</span></div>
         </div>
       </div>
     </div>
-    <div class="scroll-indicator"><span>explore</span><div class="scroll-line"></div></div>
+    <div class="scroll-indicator"><span>scroll</span><div class="scroll-line"></div></div>
   </section>
 
   <!-- FOCUS CARDS -->
@@ -94,7 +94,7 @@
   <section id="skills" class="section section-alt">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Skills</span>
+        <span class="section-tag">02 / skills</span>
         <h2 class="section-title">Technical Arsenal</h2>
         <p class="section-sub">A focused stack of tools and technologies I use to turn data into decisions.</p>
       </div>
@@ -128,36 +128,73 @@
   <section id="projects" class="section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">projects</span>
+        <span class="section-tag">03 / projects</span>
         <h2 class="section-title">Built Things</h2>
+        <p class="section-sub">A collection of projects across data, ML, development and research.</p>
       </div>
+
+      <!-- FILTER TABS -->
+      <div class="project-filter-tabs">
+        {% for cat in data.project_categories %}
+        <button
+          class="filter-tab {% if loop.first %}active{% endif %}"
+          data-category="{{ cat.name }}">
+          <span class="filter-tab-icon">{{ cat.icon }}</span>
+          <span>{{ cat.name }}</span>
+        </button>
+        {% endfor %}
+      </div>
+
+      <!-- PROJECTS GRID -->
       {% if data.projects %}
-      <div class="projects-grid">
+      <div class="projects-grid" id="projects-grid">
         {% for p in data.projects %}
-        <div class="project-card">
+        <div class="project-card" data-category="{{ p.category }}">
           <div class="project-top">
-            <span class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/></svg></span>
+            <span class="project-category-badge">
+              {% for cat in data.project_categories %}
+                {% if cat.name == p.category %}{{ cat.icon }}{% endif %}
+              {% endfor %}
+              {{ p.category }}
+            </span>
             <div class="project-links">
-              {% if p.github %}<a href="{{ p.github }}" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>{% endif %}
+              {% if p.github %}
+              <a href="{{ p.github }}" target="_blank" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              {% endif %}
+              {% if p.live %}
+              <a href="{{ p.live }}" target="_blank" title="Live">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+              {% endif %}
             </div>
           </div>
           <h3 class="project-name">{{ p.name }}</h3>
           <p class="project-desc">{{ p.description }}</p>
-          <div class="project-tech">{% for t in p.tech %}<span class="tech-tag">{{ t }}</span>{% endfor %}</div>
+          <div class="project-tech">
+            {% for t in p.tech %}<span class="tech-tag">{{ t }}</span>{% endfor %}
+          </div>
         </div>
         {% endfor %}
       </div>
+
+      <!-- EMPTY STATE (shown when filter has no results) -->
+      <div class="empty-state" id="no-projects" style="display:none;">
+        No projects in this category yet — coming soon!
+      </div>
+
       {% else %}
       <div class="empty-state">Projects coming soon.</div>
       {% endif %}
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
+    <!-- EXPERIENCE -->
   <section id="experience" class="section section-alt">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Professional Exposure</span>
+        <span class="section-tag">04 / experience</span>
         <h2 class="section-title">Work Experience</h2>
       </div>
       <div class="timeline">
@@ -180,7 +217,7 @@
   <section id="education" class="section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Education</span>
+        <span class="section-tag">05 / education</span>
         <h2 class="section-title">Education</h2>
       </div>
       <div class="timeline">
@@ -203,7 +240,7 @@
   <section id="certifications" class="section section-alt">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Certifications</span>
+        <span class="section-tag">06 / certifications</span>
         <h2 class="section-title">Certifications</h2>
       </div>
       {% if data.certifications %}
@@ -228,7 +265,7 @@
   <section id="more" class="section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">More</span>
+        <span class="section-tag">07 / more</span>
         <h2 class="section-title">More Coming Soon</h2>
       </div>
       <div class="more-grid">
@@ -247,7 +284,7 @@
   <section id="contact" class="section section-alt">
     <div class="container contact-inner">
       <div class="section-header">
-        <span class="section-tag">Contact</span>
+        <span class="section-tag">08 / contact</span>
         <h2 class="section-title">Let's Connect</h2>
         <p class="contact-sub">Whether it's a collaboration, a question, or just a hello — my inbox is open.</p>
       </div>
