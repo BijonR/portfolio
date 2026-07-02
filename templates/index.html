@@ -21,6 +21,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#blog">Blog</a></li>
       <li><a href="#more">More</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
@@ -257,6 +258,46 @@
       </div>
       {% else %}
       <div class="empty-state">Certifications coming soon.</div>
+      {% endif %}
+    </div>
+  </section>
+
+<!-- BLOG -->
+  <section id="blog" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">08 / blog</span>
+        <h2 class="section-title">Latest Writing</h2>
+        <p class="section-sub">Thoughts on data, ML and tech — published on Medium.</p>
+      </div>
+      {% if blog_posts %}
+      <div class="blog-grid">
+        {% for post in blog_posts %}
+        <a href="{{ post.link }}" target="_blank" class="blog-card">
+          {% if post.thumbnail %}
+          <div class="blog-thumb" style="background-image: url('{{ post.thumbnail }}')"></div>
+          {% else %}
+          <div class="blog-thumb blog-thumb-placeholder">✍️</div>
+          {% endif %}
+          <div class="blog-body">
+            <div class="blog-tags">
+              {% for tag in post.tags %}
+              <span class="blog-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            <h3 class="blog-title">{{ post.title }}</h3>
+            <p class="blog-date">{{ post.date }}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+      <div class="blog-footer">
+        <a href="https://medium.com/@BijonR" target="_blank" class="btn-ghost">
+          Read More on Medium →
+        </a>
+      </div>
+      {% else %}
+      <div class="empty-state">No blog posts yet — check back soon!</div>
       {% endif %}
     </div>
   </section>

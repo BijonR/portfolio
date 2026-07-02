@@ -1,6 +1,8 @@
 from flask import Flask, render_template, send_from_directory, request, jsonify
 import os, urllib.request, json
 import requests
+import xml.etree.ElementTree as ET
+import re
 
 app = Flask(__name__)
 
@@ -14,6 +16,32 @@ SUPABASE_HEADERS = {
     "Content-Type": "application/json",
     "Prefer": "return=representation"
 }
+
+def fetch_medium_posts(username, limit=6):
+    try:
+        feed_url = f"https://medium.com/feed/@{username}"
+        resp = requests.get(feed_url, timeout=8)
+        root = ET.fromstring(resp.content)
+        channel = root.find('channel')
+        posts = []
+        for item in channel.findall('item')[:limit]:
+            content = item.find('{http://purl.org/rss/1.0/modules/content/}encoded')
+            thumb = None
+            if content is not None and content.text:
+                match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', content.text)
+                if match:
+                    thumb = match.group(1)
+            posts.append({
+                "title":     item.find('title').text,
+                "link":      item.find('link').text,
+                "date":      item.find('pubDate').text[:16],
+                "thumbnail": thumb,
+                "tags":      [c.text for c in item.findall('category')][:3],
+            })
+        return posts
+    except Exception as e:
+        print("Medium RSS error:", e)
+        return []
 
 portfolio_data = {
     "name": "Bijon Kanti Roy",
@@ -141,7 +169,8 @@ portfolio_data = {
 
 @app.route("/")
 def index():
-    return render_template("index.html", data=portfolio_data)
+    blog_posts = fetch_medium_posts("BijonR", limit=6)
+    return render_template("index.html", data=portfolio_data, blog_posts=blog_posts)
 
 
 @app.route("/download-cv")
