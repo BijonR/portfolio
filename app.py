@@ -151,13 +151,38 @@ portfolio_data = {
             "degree": "B.Sc. in Computer Science & Engineering",
             "institution": "Daffodil International University",
             "period": "January 2019 – February 2023",
-            "details": "CGPA: 3.665 / 4.00  |  VPD: 1.5 (German Scale)",
+            "details": "CGPA: 3.65 / 4.00  |  VPD: 1.5 (German Scale)",
+        },
+        {
+            "degree": "M.Sc. in Data Science",
+            "institution": "Catholic University of Eichstaett-Ingolstadt",
+            "period": "Winter 2026/27",
+            "details": "In Progres",
         }
     ],
 
     "certifications": [
-        {"name": "Data Science Foundations - Level 1", "issuer": "IBM",       "year": "2025"},
-        {"name": "Google Analytics Certification",     "issuer": "Skillshop", "year": "2025"},
+        {
+            "name": "Data Science Foundations - Level 1",
+            "issuer": "IBM",
+            "year": "2025",
+            "link": "https://www.credly.com/badges/a83660cb-b145-407c-970d-76183bf6c50c",
+            "image": "https://cdn.simpleicons.org/ibm/006699"
+        },
+        {
+            "name": "Google Analytics Certification - 2025",
+            "issuer": "Skillshop",
+            "year": "2025",
+            "link": "https://skillshop.credential.net/e41adf74-438b-43d9-975c-b3e4b35c53aa#acc.YDKeUIoH",
+            "image": "https://cdn.simpleicons.org/googleanalytics/E37400"
+        },
+        {
+            "name": "Google Analytics Certification - 2026",
+            "issuer": "Skillshop",
+            "year": "July 11, 2026",
+            "link": "https://skillshop.credential.net/ea2f33ed-a76a-4d3f-a51a-cc536b55e9ca#acc.xgnpb5l8",
+            "image": "https://cdn.simpleicons.org/googleanalytics/E37400"
+        },
     ],
 
     "publications": [],

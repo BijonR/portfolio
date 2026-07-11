@@ -237,21 +237,37 @@
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
+<!-- CERTIFICATIONS -->
   <section id="certifications" class="section section-alt">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Recofnitions</span>
+        <span class="section-tag">06 / certifications</span>
         <h2 class="section-title">Certifications</h2>
       </div>
       {% if data.certifications %}
       <div class="cert-grid">
         {% for cert in data.certifications %}
         <div class="cert-card">
-          <span class="cert-icon">🏅</span>
+          <div class="cert-image-wrap">
+            {% if cert.image %}
+            <img src="{{ cert.image }}" alt="{{ cert.name }}" class="cert-badge-img"/>
+            {% else %}
+            <span class="cert-icon">🏅</span>
+            {% endif %}
+          </div>
           <div class="cert-info">
             <h3 class="cert-name">{{ cert.name }}</h3>
             <p class="cert-meta">{{ cert.issuer }} &middot; {{ cert.year }}</p>
+            {% if cert.link %}
+            <a href="{{ cert.link }}" target="_blank" class="cert-link-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              View Credential
+            </a>
+            {% endif %}
           </div>
         </div>
         {% endfor %}
