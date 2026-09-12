@@ -82,6 +82,14 @@ portfolio_data = {
 
     "projects": [
         {
+            "name": "Bangladesh Dengue Outbreak Dashboard",
+            "description": "Interactive dashboard analyzing division-wise dengue outbreak trends across Bangladesh (2022-2024), combining daily case data with weather variables. Reveals a major 2023 outbreak (peaking at over 60,000 monthly cases), Dhaka's disproportionate case burden (~56% of the national total), and a likely lagged relationship between rainfall and outbreak onset rather than an immediate one.",
+            "tech": ["Python", "Pandas", "Streamlit", "Plotly", "EDA", "Statistical Correlation"],
+            "github": "https://github.com/BijonR/dengue-dashboard",
+            "live": "https://dengue-dashboard-bd.streamlit.app/",
+            "category": "Data Analysis",
+        },
+        {
             "name": "School Management System",
             "description": "Backend development of a full-featured School Management System as a final-year project. Handles student records, attendance, academic results, and administrative workflows.",
             "tech": ["PHP", "MySQL", "Backend Development"],
