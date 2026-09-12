@@ -144,7 +144,7 @@ portfolio_data = {
         {
             "role": "Data Analyst",
             "company": "National Healthcare Services",
-            "period": "January 2024 – Present",
+            "period": "January 2023 – Present",
             "points": [
                 "Operational data analysis and KPI dashboard development using Power BI and Tableau",
                 "Database design and management with MySQL for healthcare records",
