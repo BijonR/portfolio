@@ -73,8 +73,9 @@ portfolio_data = {
         {"name": "Python",                 "level": 85, "icon": "https://skillicons.dev/icons?i=python"},
         {"name": "PHP",                    "level": 65, "icon": "https://skillicons.dev/icons?i=php"},
         {"name": "Flask",                  "level": 72, "icon": "https://skillicons.dev/icons?i=flask"},
+        {"name": "Jupyter Notebook",       "level": 85, "icon": "https://skillicons.dev/icons?i=jupyter"},
     ],
-    "Data Science & ML Libraries": [
+    "Data Science & ML Toolkit": [
         {"name": "Pandas",                 "level": 82, "icon": "https://img.icons8.com/color/96/pandas.png"},
         {"name": "NumPy",                  "level": 80, "icon": "https://img.icons8.com/color/96/numpy.png"},
         {"name": "Scikit-Learn",           "level": 65, "icon": "https://img.icons8.com/color/96/scikit-learn.png"},
@@ -82,7 +83,6 @@ portfolio_data = {
         {"name": "Seaborn",                "level": 72, "icon": "https://img.icons8.com/color/96/seaborn.png"},
         {"name": "Prophet",                "level": 60, "icon": "https://img.icons8.com/color/96/statistics.png"},
         {"name": "statsmodels",            "level": 58, "icon": "https://img.icons8.com/color/96/regression.png"},
-        {"name": "Jupyter Notebook",       "level": 85, "icon": "https://skillicons.dev/icons?i=jupyter"},
     ],
     "Domain Expertise": [
         {"name": "Supply Chain",           "level": 85, "icon": "https://img.icons8.com/color/96/supply-chain.png"},
