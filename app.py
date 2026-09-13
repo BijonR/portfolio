@@ -55,30 +55,51 @@ portfolio_data = {
     # Skills: category → list of {name, level, icon_url}
     # Icons from https://skillicons.dev (free, no API key needed)
     "skills": {
-        "Data & Analytics": [
-            {"name": "SQL",         "level": 90, "icon": "https://skillicons.dev/icons?i=mysql"},
-            {"name": "Excel",       "level": 85, "icon": "https://img.icons8.com/color/96/microsoft-excel-2019--v1.png"},
-            {"name": "Power BI",    "level": 82, "icon": "https://img.icons8.com/color/96/power-bi.png"},
-            {"name": "Tableau",     "level": 75, "icon": "https://img.icons8.com/color/96/tableau-software.png"},
-        ],
-        "Programming": [
-            {"name": "Python",      "level": 85, "icon": "https://skillicons.dev/icons?i=python"},
-            {"name": "Pandas",      "level": 80, "icon": "https://img.icons8.com/color/96/pandas.png"},
-            {"name": "NumPy",       "level": 78, "icon": "https://img.icons8.com/color/96/numpy.png"},
-            {"name": "Matplotlib",  "level": 72, "icon": "https://img.icons8.com/color/96/matplotlib.png"},
-        ],
-        "ML & AI": [
-            {"name": "Scikit-learn","level": 65, "icon": "https://img.icons8.com/color/96/scikit-learn.png"},
-            {"name": "TensorFlow",  "level": 45, "icon": "https://skillicons.dev/icons?i=tensorflow"},
-            {"name": "Statistics",  "level": 78, "icon": "https://img.icons8.com/color/96/statistics.png"},
-        ],
-        "Tools & Systems": [
-            {"name": "Git",         "level": 68, "icon": "https://skillicons.dev/icons?i=git"},
-            {"name": "GitHub",      "level": 68, "icon": "https://skillicons.dev/icons?i=github"},
-            {"name": "Flask",       "level": 72, "icon": "https://skillicons.dev/icons?i=flask"},
-            {"name": "MySQL",       "level": 88, "icon": "https://skillicons.dev/icons?i=mysql"},
-        ],
-    },
+        "Data Analysis & Visualization": [
+        {"name": "Microsoft Excel",        "level": 90, "icon": "https://img.icons8.com/color/96/microsoft-excel-2019--v1.png"},
+        {"name": "Power BI",               "level": 85, "icon": "https://img.icons8.com/color/96/power-bi.png"},
+        {"name": "Tableau",                "level": 78, "icon": "https://img.icons8.com/color/96/tableau-software.png"},
+        {"name": "Dashboards",             "level": 82, "icon": "https://img.icons8.com/color/96/combo-chart--v1.png"},
+        {"name": "Reporting Pipelines",    "level": 75, "icon": "https://img.icons8.com/color/96/data-configuration.png"},
+    ],
+    "Databases & Data Warehousing": [
+        {"name": "SQL",                    "level": 90, "icon": "https://img.icons8.com/color/96/sql.png"},
+        {"name": "MySQL",                  "level": 88, "icon": "https://skillicons.dev/icons?i=mysql"},
+        {"name": "PostgreSQL",             "level": 70, "icon": "https://skillicons.dev/icons?i=postgres"},
+        {"name": "phpMyAdmin",             "level": 75, "icon": "https://img.icons8.com/color/96/phpmyadmin.png"},
+        {"name": "Snowflake",              "level": 55, "icon": "https://img.icons8.com/color/96/snowflake.png"},
+    ],
+    "Programming & Frameworks": [
+        {"name": "Python",                 "level": 85, "icon": "https://skillicons.dev/icons?i=python"},
+        {"name": "PHP",                    "level": 65, "icon": "https://skillicons.dev/icons?i=php"},
+        {"name": "Flask",                  "level": 72, "icon": "https://skillicons.dev/icons?i=flask"},
+    ],
+    "Data Science & ML Libraries": [
+        {"name": "Pandas",                 "level": 82, "icon": "https://img.icons8.com/color/96/pandas.png"},
+        {"name": "NumPy",                  "level": 80, "icon": "https://img.icons8.com/color/96/numpy.png"},
+        {"name": "Scikit-Learn",           "level": 65, "icon": "https://img.icons8.com/color/96/scikit-learn.png"},
+        {"name": "Matplotlib",             "level": 75, "icon": "https://img.icons8.com/color/96/matplotlib.png"},
+        {"name": "Seaborn",                "level": 72, "icon": "https://img.icons8.com/color/96/seaborn.png"},
+        {"name": "Prophet",                "level": 60, "icon": "https://img.icons8.com/color/96/statistics.png"},
+        {"name": "statsmodels",            "level": 58, "icon": "https://img.icons8.com/color/96/regression.png"},
+        {"name": "Jupyter Notebook",       "level": 85, "icon": "https://skillicons.dev/icons?i=jupyter"},
+    ],
+    "Domain Expertise": [
+        {"name": "Supply Chain",           "level": 85, "icon": "https://img.icons8.com/color/96/supply-chain.png"},
+        {"name": "Demand Forecasting",     "level": 80, "icon": "https://img.icons8.com/color/96/futures.png"},
+        {"name": "Inventory Planning",     "level": 78, "icon": "https://img.icons8.com/color/96/inventory.png"},
+        {"name": "Procurement Analytics",  "level": 72, "icon": "https://img.icons8.com/color/96/purchase-order.png"},
+        {"name": "Statistical Analysis",   "level": 75, "icon": "https://img.icons8.com/color/96/normal-distribution-histogram.png"},
+    ],
+    "DevOps, Cloud & Deployment": [
+        {"name": "Git",                    "level": 72, "icon": "https://skillicons.dev/icons?i=git"},
+        {"name": "GitHub",                 "level": 72, "icon": "https://skillicons.dev/icons?i=github"},
+        {"name": "Docker",                 "level": 45, "icon": "https://skillicons.dev/icons?i=docker"},
+        {"name": "REST API",               "level": 60, "icon": "https://img.icons8.com/color/96/api-settings.png"},
+        {"name": "Supabase",               "level": 58, "icon": "https://skillicons.dev/icons?i=supabase"},
+        {"name": "Render",                 "level": 65, "icon": "https://img.icons8.com/color/96/cloud-computing.png"},
+    ],
+},
 
     "projects": [
         {
